@@ -4,9 +4,9 @@ This GitHub repository contains the files and metadata associated with the manus
 
 The bioRxiv preprint of this manuscript can be found here (link). 
 
-8/25/2020
-Zhichao Zhou
-Kristopher Kieft
-Karthik Anantharaman
-University of Wisconsin-Madison
+8/25/2020  
+Zhichao Zhou  
+Kristopher Kieft  
+Karthik Anantharaman  
+University of Wisconsin-Madison  
 
