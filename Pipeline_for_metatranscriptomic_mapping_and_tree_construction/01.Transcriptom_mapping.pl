@@ -4,7 +4,7 @@ use strict;
 use warnings; 
 
 my %map = (); # DNA and cDNA reads maps
-open IN, "Transcriptom_map.txt";
+open IN, "Transcriptome_map.txt";
 while (<IN>){
 	chomp;
 	my @tmp = split (/\t/);

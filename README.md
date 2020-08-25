@@ -14,8 +14,8 @@ University of Wisconsin-Madison
 ## Table of Contents:
 1. [Data files](#data)
 2. [Taxonomy](#taxonomy)
-3. [Mapping and Tree Construction](#map)
-4. [Phage to Bacteria Ratio Calculation](#ratio)
+3. [Phage to bacterial sulfur-related AMG ratio calculation](#map)
+4. [Metatranscriptomic mapping](#ratio)
 5. [Contact](#contact)
 
 
@@ -45,7 +45,7 @@ _Cautions_: The input file headers (sequence names) cannot have spaces in the na
 
 
 
-### Mapping and Tree Construction <a name="map"></a>
+### Phage to bacterial sulfur-related AMG ratio calculation <a name="map"></a>
 
 _Dependencies_: Perl v5+, Bowtie 2 v2.3.4.1,  jgi_summarize_bam_contig_depths (implemented in MetaWrap), Diamond v0.9.28.129, MAFFT v7.271, IQ-TREE v1.6.9
 
@@ -87,13 +87,39 @@ Firstly, divide the viral and bacterial sequences to each category according to 
 Firstly, get the viral to putative host bacterial pair information. Then, calculate viral and bacterial sequence gene coverage percentage values within each pair (the gene coverage values of viral and bacterial sequence were all normalized by gene numbers). Fianlly, calcualte the viral to putative host bacterial gene coverage ratios.
 
 
-### Phage to Bacteria Ratio Calculation <a name="ratio"></a>
+### Metatranscriptomic mapping <a name="ratio"></a>
 
+_Dependencies_: Perl v5+, Bowtie 2 v2.3.4.1,  pileup (implemented in BBmap), Diamond v0.9.28.129, MAFFT v7.271, IQ-TREE v1.6.9    
 
+01.Transcriptom_mapping.pl    
+Concatenate all the genes from metagenome as the mapping reference; Use Bowtie 2 to map filterd, QC-processed and rRNA removed metatranscriptomic reads; Finally get sorted bam files as the result. The metadata file "Transcriptome_map.txt" was used to allow processing mutiple metatranscriptomes mapping by this script.        
 
+02.pileup_to_calculate_gene_reads_abundance_for_MetaT.sh
+Use "pileup.sh" to calculate gene abundance.   
 
+03.parse_pileup_info.pl    
+Parse pileup result.    
 
+04.calculate_MetaT_RPKM.pl    
+Calculate the gene expression result by normalizing gene abundance by read numbers (1 million reads) and gene length (1k).    
 
+05.parse_MetaT_RPKM_result.pl    
+Parse to get MetaT RPKM results for targeted genes.    
+
+06.run_blastp.sh    
+Run Diamond Blastp for all the DsrA sequences.    
+
+07.parse_blast_result.sh    
+Parse the Diamond Blastp result.    
+
+08.find_top_non_virus_hit.pl     
+Parse the Diamond Blastp result to screen for top 10 non-virus hits, which will be downloaded and used as reference sequences to build phylogenetic tree.     
+
+09.make_dsrA_tree.pl    
+Use viral and bacterial DsrA sequences, and reference DsrA sequences from Step #8, to build phylogenetic tree. MAFFT was used to align the sequences, and IQ-TREE was used to build the tree.     
+
+10.Replace_tip_names.pl    
+Replace tip names of resulted tree to the ones that are meaningful and formal.    
 
 ### Contact <a name="contact"></a>
 
