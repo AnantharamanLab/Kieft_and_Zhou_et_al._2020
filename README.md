@@ -12,13 +12,21 @@ University of Wisconsin-Madison
 
 
 ## Table of Contents:
-1. [Taxonomy](#taxonomy)
-2. [Mapping and Tree Construction](#map)
-3. [Phage to Bacteria Ratio Calculation](#ratio)
-4. [Contact](#contact)
+1. [Data files](#data)
+2. [Taxonomy](#taxonomy)
+3. [Mapping and Tree Construction](#map)
+4. [Phage to Bacteria Ratio Calculation](#ratio)
+5. [Contact](#contact)
 
 
 ## Explanations
+
+
+### Data Files <a name="data"></a>
+
+* `Kieft_and_Zhou_et_al_2020.genomes.fasta`: all 191 vMAG genome sequences used in this study  
+* `Kieft_and_Zhou_et_al_2020.proteins.faa`: all predicted protein sequences for the vMAGs used in this study  
+
 
 ### Taxonomy <a name="taxonomy"></a>
 This folder contains the custom Python program and associated database to estimate the taxonomy of prokaryotic viruses. The program (`PTT.py`, Phage Taxonomy Tool) takes either proteins or genomes as an input file and will run Diamond Blastp against a database of reference viruses from NCBI GenBank. Diamond Blastp hits will be filtered and assignment of a taxonomic lineage will be determined according to counting Diamond Blastp hits. Assignments will be made on the levels of Order, Family and Sub-family, though database metadata is provided to the Genus level if manual curation of Genus is desired. Each taxonomic level will be assigned individually, starting with Order. If an Order is assigned it will move to Family before assigning Sub-family. For example, if Order _Caudovirales_ and Family _unknown_ is assigned then there will be no assignment of Sub-family since the higher level (i.e., Family) was unknown.  
