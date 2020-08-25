@@ -1,0 +1,1 @@
+/slowdata/data1/Lau/Bioinformatic_analysis/Protein_annotation/blast2nr/diamond-0.9.14-1/bin/diamond blastp --db /slowdata/databases/NCBI_nr_diamond/nr_diamond --query Lau_dsrA_protein.faa --outfmt 6 --max-target-seqs 10 --out Lau_dsrA_protein.faa_blast_result.txt --threads 40
