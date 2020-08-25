@@ -48,5 +48,5 @@ _Cautions_: The input file headers (sequence names) cannot have spaces in the na
 
 ### Contact <a name="contact"></a>
 
-Kristopher Kieft, kieft@wisc.edu
+Kristopher Kieft, kieft@wisc.edu  
 Zhichao Zhou 
