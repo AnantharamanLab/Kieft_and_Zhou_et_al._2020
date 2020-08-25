@@ -47,6 +47,12 @@ _Cautions_: The input file headers (sequence names) cannot have spaces in the na
 
 ### Mapping and Tree Construction <a name="map"></a>
 
+_Explanation to each step in the pipeline:_    
+01.metagenome_mapping.pl    
+Concatenate all the genes from metagenome as the mapping reference; Use Bowtie 2 to map filterd and QC-processed reads; Finally get sorted bam files as the result. The metadata file "Metagenome_map.txt" was used to allow processing mutiple metagenome mapping by this script.    
+
+02.calculate_metagenome_to_MAG_depth.pl
+
 
 ### Phage to Bacteria Ratio Calculation <a name="ratio"></a>
 
@@ -57,4 +63,4 @@ _Cautions_: The input file headers (sequence names) cannot have spaces in the na
 ### Contact <a name="contact"></a>
 
 Kristopher Kieft, kieft@wisc.edu  
-Zhichao Zhou 
+Zhichao Zhou, zzhou388@wisc.edu 
