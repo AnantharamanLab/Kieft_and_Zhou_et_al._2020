@@ -47,14 +47,49 @@ _Cautions_: The input file headers (sequence names) cannot have spaces in the na
 
 ### Mapping and Tree Construction <a name="map"></a>
 
+_Dependencies_: Perl v5+, Bowtie 2 v2.3.4.1,  jgi_summarize_bam_contig_depths (implemented in MetaWrap), Diamond v0.9.28.129, MAFFT v7.271, IQ-TREE v1.6.9
+
 _Explanation to each step in the pipeline:_    
 01.metagenome_mapping.pl    
-Concatenate all the genes from metagenome as the mapping reference; Use Bowtie 2 to map filterd and QC-processed reads; Finally get sorted bam files as the result. The metadata file "Metagenome_map.txt" was used to allow processing mutiple metagenome mapping by this script.    
+Concatenate all the genes from metagenome as the mapping reference; Use Bowtie 2 to map filterd and QC-processed reads; Finally get sorted bam files as the result. The metadata file "Metagenome_map.txt" was used to allow processing mutiple metagenomes mapping by this script.    
 
-02.calculate_metagenome_to_MAG_depth.pl
+02.calculate_metagenome_to_MAG_depth.pl    
+Use "jgi_summarize_bam_contig_depths" to calculate gene coverage.    
+
+03.grep_dsrA_list.sh    
+Grep _dsrA_ genes from metagenome. Each IMG metagenome has its annotation by the DOE IMG database. We used the annotation to pre-select _dsrA_ genes from each metagenome. It needs further manual curation.  
+
+04.calculate_viral_to_bacterial_sulfur-related_AMG_ratio.pl    
+Read gene coverage result from Step #2. Calculate the viral to bacterial total sulfur-related AMG gene coverage ratio for each metagenome.    
+
+05.grep_all_dsrA_gene.pl    
+Grep all the dsrA gene encoding proteins from the metagenome.    
+
+06.run_blastp.sh    
+Run Diamond Blastp for all the DsrA sequences.    
+
+07.parse_blast_result.sh    
+Parse the Diamond Blastp result.    
+
+08.find_top_non_virus_hit.pl    
+Parse the Diamond Blastp result to screen for top 10 non-virus hits, which will be downloaded and used as reference sequences to build phylogenetic tree.    
+
+09.make_dsrA_tree.pl    
+Use viral and bacterial DsrA sequences, and reference DsrA sequences from Step #8, to build phylogenetic tree. MAFFT was used to align the sequences, and IQ-TREE was used to build the tree.    
+
+10.Replace_tip_names.pl    
+Replace tip names of resulted tree to the ones that are meaningful and formal.       
+
+11.calculate_viral_to_bacterial_sulfur-related_AMG_ratio_according_to_taxonomy.pl
+Firstly, divide the viral and bacterial sequences to each category according to their taxonomy. Then, calculate their AMG gene coverage ratios.    
+
+12.calculate_viral_to_putative_host_bacterial_pair_sulfur-related_AMG_ratio.pl        
+Firstly, get the viral to putative host bacterial pair information. Then, calculate viral and bacterial sequence gene coverage percentage values within each pair (the gene coverage values of viral and bacterial sequence were all normalized by gene numbers). Fianlly, calcualte the viral to putative host bacterial gene coverage ratios.
 
 
 ### Phage to Bacteria Ratio Calculation <a name="ratio"></a>
+
+
 
 
 
