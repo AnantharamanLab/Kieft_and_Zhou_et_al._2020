@@ -11,10 +11,15 @@ Karthik Anantharaman
 University of Wisconsin-Madison  
 
 
+## Table of Contents:
+1. [Taxonomy](#taxonomy)
+2. [Mapping and Tree Construction](#map)
+3. [Phage to Bacteria Ratio Calculation](#ratio)
+
 
 ### Explanations
 
-##### Taxonomy
+#### Taxonomy <a name="taxonomy"></a>
 This folder contains the custom Python program and associated database to estimate the taxonomy of prokaryotic viruses. The program (`PTT.py`, Phage Taxonomy Tool) takes either proteins or genomes as an input file and will run Diamond Blastp against a database of reference viruses from NCBI GenBank. Diamond Blastp hits will be filtered and assignment of a taxonomic lineage will be determined according to counting Diamond Blastp hits. Assignments will be made on the levels of Order, Family and Sub-family, though database metadata is provided to the Genus level if manual curation of Genus is desired. Each taxonomic level will be assigned individually, starting with Order. If an Order is assigned it will move to Family before assigning Sub-family. For example, if Order _Caudovirales_ and Family _unknown_ is assigned then there will be no assignment of Sub-family since the higher level (i.e., Family) was unknown.  
 
 _Dependencies_: Diamond, Prodigal (if input is nucleotides), Blast, BioPython. 
@@ -26,3 +31,10 @@ _Usage_: This programs takes a minimum of one argument (the input file). For qui
 _Outputs_: 
 
 _CAUTION_: The input file headers (sequence names) cannot have spaces in the names or else the output will cut the names at those spaces. Input proteins must be in Prodigal format (e.g., >sequence_name_#).  
+
+
+
+#### Mapping and Tree Construction <a name="map"></a>
+
+
+#### Phage to Bacteria Ratio Calculation <a name="ratio"></a>
