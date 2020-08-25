@@ -7,7 +7,7 @@
 ## Kieft and Zhou et al. 2020
 ###############
 
-# Usage: $ python3 Kieft_and_Zhou_et_al_2020.phage-taxonomy.py -i <input_fasta_file> -t <threads> -f <format>
+# Usage: $ python3 PTT.py -i <input_fasta_file> -t <threads> -f <format>
 # PTT: phage taxonomy tool
 # Version comment: the database was compiled using Diamond v2.0.0.138
 
